@@ -327,6 +327,46 @@ artifactsHarvested:
   fetched: '2026-07-27'
   parsed: true
   type: JSON Web Key Set (RFC 7517)
+- path: well-known/good-energy-security.txt
+  sourceURL: https://www.goodenergy.co.uk/.well-known/security.txt
+  httpStatus: 200
+  contentType: text/plain
+  fetched: '2026-07-27'
+  parsed: true
+  type: RFC 9116 security.txt (Expires field malformed, so not strictly valid)
+
+enrichmentRounds:
+- round: '2026-07-27 (round 2)'
+  added:
+  - well-known/good-energy-well-known.yml + well-known/good-energy-security.txt (searched)
+  - authentication/good-energy-authentication.yml (derived from the OIDC discovery document)
+  - scopes/good-energy-scopes.yml (derived from scopes_supported)
+  - conformance/good-energy-conformance.yml (derived from identity/web-security/energy standards)
+  - security/good-energy-domain-security.yml (probed) + security/good-energy-vulnerability-disclosure.yml (probed)
+  - llms/good-energy-llms.txt (generated)
+  skippedWithReason:
+  - openapi/ asyncapi/ graphql/ overlays/ errors/ data-model/ skills/ mcp/ sandbox/ cli/ components/
+    changelog/ agentic-access/ arazzo/ — all require a machine-readable API contract Good Energy does
+    not publish; nothing was generated rather than fabricated.
+  - packages/ — npm registry search for "goodenergy" returned zero packages; pypi goodenergy and
+    good-energy both 404. No first-party client library exists.
+  - lifecycle/ — no status page (status.goodenergy.co.uk NXDOMAIN; goodenergy.statuspage.io is the
+    Atlassian marketing site, not a Good Energy page; /help/service-status/ serves the generic help
+    hub), no versioning policy, no deprecation policy and no published SLA. Nothing to record.
+  - trust center — probe-security-programs.py returned trust=none; no SOC 2 / ISO 27001 / PCI / HIPAA
+    / FedRAMP page exists, so no Compliance pointer was emitted.
+  falsePositivesRejected:
+  - https://login.goodenergy.co.uk/.well-known/oauth-authorization-server -> HTTP 200 but text/html
+    (Duende login page from a catch-all route), not RFC 8414 metadata. Discarded.
+  - https://login.goodenergy.co.uk/.well-known/oauth-protected-resource -> HTTP 200 text/html. Discarded.
+  - https://login.goodenergy.co.uk/.well-known/security.txt -> HTTP 200 text/html. Discarded.
+  - https://goodenergy.statuspage.io/ -> HTTP 200 but redirects to the Atlassian Statuspage product
+    marketing page. Not a Good Energy status page. Discarded.
+  apisYmlFix: >-
+    The image property pointed at a placeholder logo for an unrelated company
+    (kinlane-images .../icons/groq.png). Replaced with Good Energy's own site icon,
+    https://www.goodenergy.co.uk/wp-content/uploads/2021/11/cropped-good-energy-favicon-192x192.png
+    (HTTP 200, image/png).
 
 openapi:
   harvested: false

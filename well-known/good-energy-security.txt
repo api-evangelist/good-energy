@@ -1,0 +1,9 @@
+# Thank you for looking for these contact details. Please report any security
+# vulnerabilities which you believe Good Energy is exposed to with the details
+# below. Please note that we do not currently offer bounties or financial
+# incentives for disclosures.
+Contact: mailto:security@goodenergy.co.uk
+Expires: 2026-12-310T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://www.goodenergy.co.uk/.well-known/security.txt
+Hiring: https://www.goodenergy.co.uk/about-us/careers/

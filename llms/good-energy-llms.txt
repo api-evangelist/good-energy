@@ -1,0 +1,52 @@
+# Good Energy
+
+> Good Energy is a British 100% renewable electricity and green gas supplier and green-technology
+> installer, founded 1999, headquartered in Chippenham, Wiltshire, and owned since March 2025 by Abu
+> Dhabi based Esyasoft Investment Holding. It is a licensed GB supplier, the largest voluntary
+> administrator of the Feed-in Tariff, a Smart Export Guarantee counterparty, and an installer of
+> solar, batteries, heat pumps and EV chargers.
+
+IMPORTANT FOR AGENTS: Good Energy publishes NO developer API, NO developer portal, NO OpenAPI or
+GraphQL contract, NO SDK and NO webhooks. Verified 2026-07-27: developer/developers/docs/data
+subdomains do not resolve (NXDOMAIN); /developers, /api and /docs return 404; api.goodenergy.co.uk
+answers but returns 404 on every documented path (403 via WAF on any path containing "swagger").
+Customer usage and billing data are reachable only by the account holder after login at the customer
+hub. There is no UK consumer-energy data right (no CDR, no Green Button, no accredited-recipient
+scheme) that would compel a public data API, and Good Energy has built none voluntarily. Do not
+attempt to synthesise endpoints — none exist.
+
+## The one machine-readable contract
+
+- [OpenID Connect Discovery — customer identity](https://login.goodenergy.co.uk/.well-known/openid-configuration): Duende IdentityServer style discovery document for the customer-login provider (HTTP 200, application/json). Scopes: openid, profile, email, offline_access, customer_portal, customer_portal_tariff_switch. No registration_endpoint, so no third party can obtain a client.
+- [JWKS](https://login.goodenergy.co.uk/.well-known/openid-configuration/jwks): RFC 7517 key set for the same issuer.
+- [Customer hub](https://account.goodenergy.co.uk/): login-gated Next.js customer portal — billing, usage and tariff self-service. Account holders only.
+
+## Catalog artifacts (API Evangelist)
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/apis.yml): APIs.json index for Good Energy.
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/authentication/good-energy-authentication.yml): full OIDC/OAuth profile derived from the live discovery document.
+- [OAuth scopes](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/scopes/good-energy-scopes.yml): the six advertised scopes, harvested verbatim.
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/conformance/good-energy-conformance.yml): which identity, web-security and energy standards are and are not implemented.
+- [Well-known index](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/well-known/good-energy-well-known.yml): every /.well-known/ path probed, with status.
+- [security.txt](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/well-known/good-energy-security.txt): RFC 9116 contact file, saved verbatim.
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/security/good-energy-domain-security.yml): TLS, HSTS, DNSSEC, CAA, SPF, DMARC probe results.
+- [Vulnerability disclosure](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/security/good-energy-vulnerability-disclosure.yml): security@goodenergy.co.uk, no bounty offered.
+- [Review](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/review.yml): full API Evangelist review, including every probe and its HTTP status.
+
+## Human surfaces
+
+- [Website](https://www.goodenergy.co.uk/)
+- [Blog](https://www.goodenergy.co.uk/blog/) ([RSS](https://www.goodenergy.co.uk/feed/))
+- [Help and support](https://www.goodenergy.co.uk/help/)
+- [Tariffs](https://www.goodenergy.co.uk/good-energy-tariffs/)
+- [Join / switch](https://www.goodenergy.co.uk/join/)
+- [Partners](https://www.goodenergy.co.uk/partners/) — referral and discount programme only; explicitly no API, SDK, webhook or integration content.
+- [Investors](https://www.goodenergy.co.uk/investors/)
+- [Terms and conditions](https://www.goodenergy.co.uk/terms-conditions/)
+- [Privacy policy](https://www.goodenergy.co.uk/privacy-policy/)
+
+## Context
+
+- Regulatory position: party to the Smart Energy Code, Balancing and Settlement Code (Elexon) and Retail Energy Code; operates DCC-adopted SMETS2 smart meters. That obligation is industry-code infrastructure and yields no public endpoint.
+- Peer contrast: Octopus Energy, the same market and regulator, publishes a self-serve developer portal with REST and GraphQL Kraken APIs. The difference between the two GB suppliers is a product decision, not a regulatory one.
+- Open GB energy data comes from NESO (Carbon Intensity), Elexon (BMRS/Insights) and the DNO portals — not from suppliers.

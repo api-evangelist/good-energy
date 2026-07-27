@@ -1,0 +1,71 @@
+generated: '2026-07-27'
+method: searched
+source: live anonymous HTTPS probes of every Good Energy host in apis.yml
+probed: '2026-07-27'
+note: >-
+  The only .well-known documents Good Energy actually serves are the RFC 9116 security.txt on the
+  marketing host and the OpenID Connect Discovery pair on the customer-login identity provider.
+  login.goodenergy.co.uk answers HTTP 200 for ANY /.well-known/ path it does not implement — it
+  redirects into the Duende IdentityServer login page and returns text/html — so oauth-authorization-
+  server, oauth-protected-resource and security.txt on that host are recorded as html-catch-all, NOT
+  as real documents. Only responses that parsed as their declared media type are saved.
+hosts:
+- https://www.goodenergy.co.uk
+- https://login.goodenergy.co.uk
+- https://account.goodenergy.co.uk
+- https://api.goodenergy.co.uk
+documents:
+- host: https://www.goodenergy.co.uk
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/plain
+  file: good-energy-security.txt
+  standard: RFC 9116
+- host: https://login.goodenergy.co.uk
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: application/json
+  file: ../authentication/good-energy-openid-configuration.json
+  standard: OpenID Connect Discovery 1.0
+- host: https://login.goodenergy.co.uk
+  path: /.well-known/openid-configuration/jwks
+  status: 200
+  content_type: application/json
+  file: ../authentication/good-energy-openid-jwks.json
+  standard: RFC 7517 (JWKS)
+- host: https://www.goodenergy.co.uk
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://www.goodenergy.co.uk
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://www.goodenergy.co.uk
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://www.goodenergy.co.uk
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://login.goodenergy.co.uk
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  result: html-catch-all — login page, not RFC 8414 metadata; discarded
+- host: https://login.goodenergy.co.uk
+  path: /.well-known/oauth-protected-resource
+  status: 200
+  content_type: text/html
+  result: html-catch-all — login page, not RFC 9728 metadata; discarded
+- host: https://login.goodenergy.co.uk
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  result: html-catch-all — login page, not RFC 9116; discarded
+- host: https://account.goodenergy.co.uk
+  path: /.well-known/security.txt
+  status: 404
+- host: https://api.goodenergy.co.uk
+  path: /.well-known/security.txt
+  status: 404
+- host: https://api.goodenergy.co.uk
+  path: /.well-known/openid-configuration
+  status: 404

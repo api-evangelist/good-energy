@@ -1,0 +1,139 @@
+generated: '2026-07-27'
+method: derived
+source: authentication/good-energy-openid-configuration.json
+source_url: https://login.goodenergy.co.uk/.well-known/openid-configuration
+fetched: '2026-07-27'
+http_status: 200
+note: >-
+  Derived verbatim from the live OpenID Connect Discovery document of Good Energy's customer-login
+  identity provider. There is no OpenAPI to derive securitySchemes from — Good Energy publishes no
+  developer-facing API — so this profile describes the ONLY authenticated surface the company exposes
+  anonymously in machine-readable form. It is a customer portal login, not a developer API auth
+  model: there is no registration_endpoint, so dynamic client registration is unavailable and no
+  third party can obtain a client. Access is customer-account-required.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+  - clientCredentials
+  - password
+  - deviceCode
+  - ciba
+  developer_accessible: false
+  gate: customer-account-required
+schemes:
+- name: GoodEnergyCustomerIdentity
+  type: openIdConnect
+  openIdConnectUrl: https://login.goodenergy.co.uk/.well-known/openid-configuration
+  issuer: https://login.goodenergy.co.uk
+  vendor_shape: Duende IdentityServer
+  sources:
+  - authentication/good-energy-openid-configuration.json
+  endpoints:
+    authorization: https://login.goodenergy.co.uk/connect/authorize
+    token: https://login.goodenergy.co.uk/connect/token
+    userinfo: https://login.goodenergy.co.uk/connect/userinfo
+    jwks: https://login.goodenergy.co.uk/.well-known/openid-configuration/jwks
+    introspection: https://login.goodenergy.co.uk/connect/introspect
+    revocation: https://login.goodenergy.co.uk/connect/revocation
+    end_session: https://login.goodenergy.co.uk/connect/endsession
+    check_session_iframe: https://login.goodenergy.co.uk/connect/checksession
+    device_authorization: https://login.goodenergy.co.uk/connect/deviceauthorization
+    backchannel_authentication: https://login.goodenergy.co.uk/connect/ciba
+    pushed_authorization_request: https://login.goodenergy.co.uk/connect/par
+    registration: null
+  grant_types:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  - implicit
+  - password
+  - urn:ietf:params:oauth:grant-type:device_code
+  - urn:openid:params:grant-type:ciba
+  response_types:
+  - code
+  - token
+  - id_token
+  - id_token token
+  - code id_token
+  - code token
+  - code id_token token
+  response_modes:
+  - form_post
+  - query
+  - fragment
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  pkce:
+    supported: true
+    methods:
+    - plain
+    - S256
+  par:
+    supported: true
+    required: false
+  dpop:
+    signing_algs:
+    - RS256
+    - RS384
+    - RS512
+    - PS256
+    - PS384
+    - PS512
+    - ES256
+    - ES384
+    - ES512
+  id_token_signing_algs:
+  - RS256
+  subject_types:
+  - public
+  request_object_signing_algs:
+  - RS256
+  - RS384
+  - RS512
+  - PS256
+  - PS384
+  - PS512
+  - ES256
+  - ES384
+  - ES512
+  - HS256
+  - HS384
+  - HS512
+  logout:
+    frontchannel: true
+    frontchannel_session: true
+    backchannel: true
+    backchannel_session: true
+  prompt_values:
+  - none
+  - login
+  - consent
+  - select_account
+  - create
+  scopes:
+  - openid
+  - profile
+  - email
+  - offline_access
+  - customer_portal
+  - customer_portal_tariff_switch
+  mutual_tls: false
+  dynamic_client_registration: false
+observations:
+- >-
+  Legacy grants are still advertised alongside modern ones — implicit and resource-owner password
+  remain in grant_types_supported, and plain is still an accepted PKCE code_challenge_method.
+- No mTLS / private_key_jwt client authentication is advertised; only client_secret_basic and
+  client_secret_post.
+- No registration_endpoint, so there is no self-serve or dynamic path to a client_id for a third
+  party — the surface is closed to developers by construction, not by policy statement.
+cross_references:
+  scopes: scopes/good-energy-scopes.yml
+  well_known: well-known/good-energy-well-known.yml
+  conformance: conformance/good-energy-conformance.yml

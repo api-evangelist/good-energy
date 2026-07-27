@@ -22,7 +22,7 @@ description: >-
   grid or market data is published — GB open energy data comes from NESO, Elexon and the DNOs, not
   from the supplier. The single machine-readable API artifact Good Energy exposes anonymously is the
   OpenID Connect discovery document of its customer-login identity provider.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+image: https://www.goodenergy.co.uk/wp-content/uploads/2021/11/cropped-good-energy-favicon-192x192.png
 tags:
 - Energy
 - United Kingdom
@@ -66,10 +66,18 @@ apis:
   - type: JWKS
     url: authentication/good-energy-openid-jwks.json
   - type: Authentication
+    url: authentication/good-energy-authentication.yml
+  - type: OpenIDConnect
     url: https://login.goodenergy.co.uk/.well-known/openid-configuration
+  - type: OAuthScopes
+    url: scopes/good-energy-scopes.yml
   - type: SignIn
     url: https://account.goodenergy.co.uk/
 common:
+- type: VulnerabilityDisclosure
+  url: security/good-energy-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/good-energy-domain-security.yml
 - type: Website
   url: https://www.goodenergy.co.uk/
 - type: Blog
@@ -81,7 +89,27 @@ common:
 - type: SignIn
   url: https://account.goodenergy.co.uk/
 - type: SecurityTxt
+  url: well-known/good-energy-security.txt
+- type: Security
   url: https://www.goodenergy.co.uk/.well-known/security.txt
+- type: WellKnown
+  url: well-known/good-energy-well-known.yml
+- type: Authentication
+  url: authentication/good-energy-authentication.yml
+- type: OAuthScopes
+  url: scopes/good-energy-scopes.yml
+- type: Conformance
+  url: conformance/good-energy-conformance.yml
+- type: LLMsTxt
+  url: llms/good-energy-llms.txt
+- type: Pricing
+  url: https://www.goodenergy.co.uk/good-energy-tariffs/
+- type: SignUp
+  url: https://www.goodenergy.co.uk/join/
+- type: TermsOfService
+  url: https://www.goodenergy.co.uk/terms-conditions/
+- type: PrivacyPolicy
+  url: https://www.goodenergy.co.uk/privacy-policy/
 - type: Partners
   url: https://www.goodenergy.co.uk/partners/
 - type: InvestorRelations

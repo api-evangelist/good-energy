@@ -1,0 +1,73 @@
+generated: '2026-07-27'
+method: derived
+source: authentication/good-energy-openid-configuration.json
+source_url: https://login.goodenergy.co.uk/.well-known/openid-configuration
+fetched: '2026-07-27'
+http_status: 200
+docs: null
+note: >-
+  Harvested verbatim from scopes_supported in the live OpenID Connect Discovery document. Good Energy
+  publishes NO scopes/permissions reference page — there is no developer portal — so descriptions for
+  the two non-standard scopes are read from their names and from the customer-hub surface they gate,
+  and are marked inferred_description. Nothing here is invented: every scope string is present in the
+  fetched discovery document. These are PORTAL scopes (billing and tariff self-service), not energy
+  consumption-data scopes; there is no registration_endpoint, so no third party can request them.
+schemes:
+- name: GoodEnergyCustomerIdentity
+  type: openIdConnect
+  source: authentication/good-energy-openid-configuration.json
+  issuer: https://login.goodenergy.co.uk
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.goodenergy.co.uk/connect/authorize
+    tokenUrl: https://login.goodenergy.co.uk/connect/token
+  - flow: clientCredentials
+    tokenUrl: https://login.goodenergy.co.uk/connect/token
+  - flow: implicit
+    authorizationUrl: https://login.goodenergy.co.uk/connect/authorize
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://login.goodenergy.co.uk/connect/deviceauthorization
+  - flow: ciba
+    backchannelAuthenticationUrl: https://login.goodenergy.co.uk/connect/ciba
+scopes:
+- scope: openid
+  description: Standard OpenID Connect scope requesting an ID token for the signed-in customer.
+  standard: OpenID Connect Core 1.0
+  sources:
+  - authentication/good-energy-openid-configuration.json
+- scope: profile
+  description: Standard OIDC claims about the end user (name, family_name, given_name, preferred_username,
+    picture, locale, zoneinfo, updated_at and related claims advertised in claims_supported).
+  standard: OpenID Connect Core 1.0
+  sources:
+  - authentication/good-energy-openid-configuration.json
+- scope: email
+  description: Standard OIDC email and email_verified claims.
+  standard: OpenID Connect Core 1.0
+  sources:
+  - authentication/good-energy-openid-configuration.json
+- scope: offline_access
+  description: Requests a refresh token so the session can be renewed without re-authentication.
+  standard: OpenID Connect Core 1.0
+  sources:
+  - authentication/good-energy-openid-configuration.json
+- scope: customer_portal
+  description: Access to the Good Energy customer hub (account.goodenergy.co.uk) — the signed-in
+    billing, usage and account self-service surface.
+  inferred_description: true
+  standard: provider-specific
+  sources:
+  - authentication/good-energy-openid-configuration.json
+- scope: customer_portal_tariff_switch
+  description: Elevated customer-hub capability covering tariff switching / change of tariff within
+    the customer account.
+  inferred_description: true
+  standard: provider-specific
+  sources:
+  - authentication/good-energy-openid-configuration.json
+access:
+  third_party_obtainable: false
+  reason: >-
+    The discovery document exposes no registration_endpoint and Good Energy publishes no developer
+    portal, partner API programme or client-onboarding form, so no third party can obtain a client_id
+    with which to request any of these scopes.
