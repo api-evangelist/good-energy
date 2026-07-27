@@ -1,0 +1,372 @@
+aid: good-energy
+name: Good Energy
+review:
+  question: >-
+    Does Good Energy, a licensed GB electricity and gas supplier, expose any documented public API —
+    and specifically, does any consumer energy-data mandate bind it and has that mandate actually
+    been implemented as a callable, standards-conformant surface?
+  answer: false
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  tier: utility-retailer
+  homeMarket: United Kingdom
+
+identity:
+  legalName: Good Energy Group PLC (operating subsidiary Good Energy Limited)
+  founded: 1999
+  headquarters: Monkton Park Offices, Monkton Park, Chippenham, Wiltshire, SN15 1GH, United Kingdom
+  ownership: >-
+    Acquired by Esyasoft Investment Holding RSC Limited (Abu Dhabi, UAE) in an all-cash offer of 490p
+    per share valuing the company at approximately GBP 99.4 million. Announced 2025-01-27, shareholder
+    approval carried with 97.14% of votes cast, scheme effective and completed March 2025. Good Energy
+    is therefore no longer AIM-listed and is a subsidiary of an Emirati smart-grid software group.
+  valueChainPosition: >-
+    Retail edge of the GB electricity market. Licensed supplier purchasing 100% renewable power
+    directly from 2,000+ British generators; largest voluntary administrator of the Feed-in Tariff;
+    Smart Export Guarantee / export-tariff counterparty; installer of solar PV, batteries, heat pumps
+    and EV chargers; commercial solar and PPA services for business customers. B Corp certified 2024.
+  businessLines:
+  - 100% renewable electricity supply (domestic and business)
+  - Green gas supply
+  - Feed-in Tariff administration
+  - Export tariffs / Smart Export Guarantee
+  - Solar panel and battery installation (domestic and commercial)
+  - Heat pump installation
+  - EV charger installation
+  - Power Purchase Agreements
+
+mandate:
+  regime: smart-meter-infrastructure
+  status: live-implemented
+  regimeVerbatim: >-
+    Great Britain mandated the INFRASTRUCTURE, not the data right. Good Energy is a licensed GB
+    supplier and therefore a party to the Balancing and Settlement Code (Elexon), the Retail Energy
+    Code, and the Smart Energy Code, and is obligated to take all reasonable steps to install
+    second-generation (SMETS2) smart meters whose messages are carried by the licensed monopoly Data
+    Communications Company (Smart DCC). This is an industry-code obligation between suppliers, agents
+    and the DCC. It is NOT a consumer data-portability right and it produces no public API.
+  whatIsNOTMandated: >-
+    There is NO United Kingdom equivalent of the Australian Consumer Data Right for energy binding
+    Good Energy. There is no Ontario-style Green Button regulation. There is no accredited-data-
+    recipient regime. Good Energy is not a designated data holder under any consumer data-sharing
+    scheme, and no obligation compels it to publish a consumer usage or billing API to third parties.
+    The Data (Use and Access) Act 2025 creates enabling powers for smart data schemes, but as of the
+    review date no energy smart data scheme is in force that designates Good Energy — so the honest
+    consumer-data mandate answer for this organization is NONE, not "designated-not-live".
+  howTheInfrastructureMandateWasVerified:
+  - >-
+    Ofgem published a regulatory sandbox decision naming Good Energy Ltd, in which Good Energy
+    requested temporary derogations from BSC Section J (4.1.5, 4.1.6) and REC Schedule 14 (2.4, 2.5)
+    concerning the requirement to use the same Meter Equipment Manager and Data Collector for shared
+    import/export metering. Probed https://www.ofgem.gov.uk/decision/regulatory-sandbox-good-energy
+    on 2026-07-27 -> HTTP 200. This is a regulator record confirming Good Energy is a BSC and REC
+    party operating shared import/export metering.
+  - >-
+    Elexon BSC Modification P459 — "Allowing different Supplier Agents to be appointed to Import and
+    Export MSIDs" — was raised by Good Energy and applies specifically where Data Communications
+    Company (DCC) adopted smart meters are installed. This is code-body evidence that Good Energy
+    operates DCC-adopted smart meters in production. The Elexon page
+    https://www.elexon.co.uk/bsc/mod-proposal/p459/ returned HTTP 403 to an anonymous automated
+    fetch on 2026-07-27 (Elexon bot-blocks); the modification and its authorship were confirmed via
+    search-result indexing of that page rather than a direct 200.
+  - >-
+    Good Energy's own site documents SMETS2 smart-meter installation and smart tariffs
+    (/learn-about-smart-meters/, /smart-meter-installation/, /smart-tariff-faqs/, /smart-energy/,
+    all present in https://www.goodenergy.co.uk/page-sitemap.xml, HTTP 200 on 2026-07-27).
+  criticalCaveat: >-
+    A mandate is not an implementation, and here even the implemented mandate is not an API. The
+    smart-metering obligation is fully live inside industry-code infrastructure and yields ZERO
+    publicly callable endpoint, zero published contract, and zero third-party access path. Nothing in
+    Good Energy's compliance posture is consumable by a developer.
+
+dataStandard:
+  energyDataStandard: no standard reference found
+  detail: >-
+    No Green Button / ESPI implementation, no Green Button Alliance certification, no Download My
+    Data or Connect My Data, no CDR Consumer Data Standards (energy) conformance, no OCPP/OCPI
+    surface published despite the EV-charger installation business, no OpenADR, no IEEE 2030.5, no
+    IEC CIM 61968/61970 reference anywhere on the public site. The only standards actually observed
+    in a machine-readable form are identity standards, not energy standards: OpenID Connect Discovery
+    1.0, OAuth 2.0 (with PKCE S256, PAR, CIBA, device authorization, DPoP algorithms advertised) and
+    JWKS (RFC 7517), served by the customer-login identity provider.
+  industryCodeStandardsInPlay:
+  - Smart Energy Code (SEC) / SMETS2 — via Smart DCC, not a public API
+  - Balancing and Settlement Code (BSC) — Elexon, party-only
+  - Retail Energy Code (REC) — party-only
+
+split:
+  consumerDataApi: false
+  consumerDataDetail: >-
+    No third party can obtain an individual Good Energy customer's usage or billing data through any
+    documented API. Consumption, tariff and billing information is reachable only by the account
+    holder, after login, through the customer hub at https://account.goodenergy.co.uk/ (HTTP 200,
+    Next.js front end on Azure App Service ge-customer-hub-web-prod01, fronted by Azure Front Door).
+    Export meter readings from generators are collected through an HTML web form
+    (https://www.goodenergy.co.uk/smart-export-form/), not an API. There is no consent-and-
+    accreditation path because no scheme requires one.
+  marketDataOpen: false
+  marketDataDetail: >-
+    Good Energy publishes no open grid, generation, settlement or market data of its own. There is no
+    data. subdomain (NXDOMAIN), no open-data portal, no CKAN/DKAN instance, no downloadable dataset
+    index. Britain's genuinely open energy data is published by other parties in the value chain —
+    NESO's Carbon Intensity API, Elexon's BMRS/Insights, and the DNO open-data portals — none of
+    which are Good Energy surfaces. As a supplier rather than a network or system operator, Good
+    Energy is closed on BOTH sides of the split. That symmetry is the finding: unlike Octopus Energy,
+    the other notable GB supplier, Good Energy converts none of its regulated data position into a
+    developer surface.
+  peerContrast: >-
+    Octopus Energy — the UK outlier — publishes a real self-serve developer portal at
+    developer.octopus.energy with REST and GraphQL Kraken APIs and licenses the Kraken platform to
+    other utilities worldwide. Good Energy is the control case: same market, same regulator, same
+    industry codes, same smart-meter infrastructure obligation, and no developer surface at all. The
+    difference is a product decision, not a regulatory one.
+
+accessGate:
+  gate: customer-account-required
+  whatADeveloperMustDo: >-
+    There is no route in for a developer. No developer portal exists to register with, no API keys
+    are issued, no partner API programme is published, and there is no application form for data
+    access. The only way to reach any Good Energy data is to be a Good Energy customer and sign in at
+    https://account.goodenergy.co.uk/ through the OpenID Connect provider at
+    https://login.goodenergy.co.uk. The discovery document exposes no registration_endpoint, so
+    dynamic client registration is unavailable and no third-party client can be created. Commercial
+    contact is by email only — partnerships@goodenergy.co.uk (referral/discount programme, explicitly
+    not technical) and security@goodenergy.co.uk (vulnerability reports, no bounty).
+  gated: true
+
+authModel:
+  scheme: OpenID Connect / OAuth 2.0 (Duende IdentityServer shape), customer-account only
+  issuer: https://login.goodenergy.co.uk
+  discovery: https://login.goodenergy.co.uk/.well-known/openid-configuration
+  discoveryFetched: '2026-07-27'
+  discoveryHttpStatus: 200
+  endpointsAdvertised:
+  - https://login.goodenergy.co.uk/connect/authorize
+  - https://login.goodenergy.co.uk/connect/token
+  - https://login.goodenergy.co.uk/connect/userinfo
+  - https://login.goodenergy.co.uk/connect/introspect
+  - https://login.goodenergy.co.uk/connect/revocation
+  - https://login.goodenergy.co.uk/connect/endsession
+  - https://login.goodenergy.co.uk/connect/deviceauthorization
+  - https://login.goodenergy.co.uk/connect/ciba
+  - https://login.goodenergy.co.uk/connect/par
+  scopesAdvertised:
+  - openid
+  - profile
+  - email
+  - offline_access
+  - customer_portal
+  - customer_portal_tariff_switch
+  grantTypes:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  - implicit
+  - password
+  - 'urn:ietf:params:oauth:grant-type:device_code'
+  - 'urn:openid:params:grant-type:ciba'
+  pkce: true
+  pkceMethods:
+  - plain
+  - S256
+  registrationEndpoint: absent — no dynamic client registration, so no third-party client is obtainable
+  note: >-
+    These scopes are harvested verbatim from the live discovery document, not inferred. They are
+    portal scopes, not energy-data scopes: customer_portal and customer_portal_tariff_switch describe
+    a self-service billing and tariff-switching UI, not consumption data sharing. mTLS is not
+    advertised; token_endpoint_auth_methods_supported is client_secret_basic and client_secret_post.
+
+developerPortal:
+  exists: false
+  url: ''
+  confirmed: false
+  note: >-
+    No developer portal of any kind. account.goodenergy.co.uk and login.goodenergy.co.uk are customer
+    login surfaces, not developer portals.
+
+probes:
+  date: '2026-07-27'
+  method: anonymous HTTPS GET, curl, browser user-agent, redirects followed
+  results:
+  - url: https://www.goodenergy.co.uk/
+    status: 200
+    note: WordPress marketing site (Yoast SEO)
+  - url: https://goodenergy.co.uk/
+    status: 200
+    note: redirects to https://www.goodenergy.co.uk/
+  - url: https://developer.goodenergy.co.uk/
+    status: 000
+    note: does not resolve (NXDOMAIN)
+  - url: https://developers.goodenergy.co.uk/
+    status: 000
+    note: does not resolve (NXDOMAIN)
+  - url: https://docs.goodenergy.co.uk/
+    status: 000
+    note: does not resolve (NXDOMAIN)
+  - url: https://data.goodenergy.co.uk/
+    status: 000
+    note: does not resolve (NXDOMAIN)
+  - url: https://api.goodenergy.co.uk/
+    status: 404
+    note: host resolves and answers, but every path returns 404; no documented surface
+  - url: https://api.goodenergy.co.uk/openapi.json
+    status: 404
+  - url: https://api.goodenergy.co.uk/swagger.json
+    status: 403
+    note: 22-byte deny body — a WAF rule blocks any path containing "swagger"; no spec obtainable
+  - url: https://api.goodenergy.co.uk/swagger/v1/swagger.json
+    status: 403
+  - url: https://api.goodenergy.co.uk/api-docs
+    status: 404
+  - url: https://api.goodenergy.co.uk/graphql
+    status: 404
+  - url: https://api.goodenergy.co.uk/.well-known/openid-configuration
+    status: 404
+  - url: https://www.goodenergy.co.uk/developers/
+    status: 404
+  - url: https://www.goodenergy.co.uk/api/
+    status: 404
+  - url: https://www.goodenergy.co.uk/docs/
+    status: 404
+  - url: https://www.goodenergy.co.uk/openapi.json
+    status: 404
+  - url: https://www.goodenergy.co.uk/swagger.json
+    status: 404
+  - url: https://www.goodenergy.co.uk/apis.json
+    status: 404
+  - url: https://www.goodenergy.co.uk/llms.txt
+    status: 404
+  - url: https://www.goodenergy.co.uk/.well-known/ai-plugin.json
+    status: 404
+  - url: https://www.goodenergy.co.uk/.well-known/openid-configuration
+    status: 404
+  - url: https://www.goodenergy.co.uk/.well-known/security.txt
+    status: 200
+    note: 'security@goodenergy.co.uk; no bounty offered; Expires field is malformed ("2026-12-310T23:59:59.000Z")'
+  - url: https://www.goodenergy.co.uk/robots.txt
+    status: 200
+  - url: https://www.goodenergy.co.uk/sitemap.xml
+    status: 200
+    note: 209 pages in page-sitemap.xml; zero developer, API or open-data pages
+  - url: https://www.goodenergy.co.uk/partners/
+    status: 200
+    note: referral/discount programme only — explicitly no API, SDK, webhook or integration content
+  - url: https://www.goodenergy.co.uk/business/
+    status: 200
+    note: commercial solar, supply and PPA/FIT administration — no data feeds, no half-hourly data API
+  - url: https://account.goodenergy.co.uk/
+    status: 200
+    note: customer hub, Next.js on Azure App Service ge-customer-hub-web-prod01 behind Azure Front Door
+  - url: https://login.goodenergy.co.uk/
+    status: 302 -> 200
+    note: redirects to /Account/Login — identity provider for the customer hub
+  - url: https://login.goodenergy.co.uk/.well-known/openid-configuration
+    status: 200
+    note: REAL ARTIFACT, saved verbatim to authentication/good-energy-openid-configuration.json
+  - url: https://login.goodenergy.co.uk/.well-known/openid-configuration/jwks
+    status: 200
+    note: REAL ARTIFACT, saved verbatim to authentication/good-energy-openid-jwks.json
+  - url: https://login.goodenergy.co.uk/swagger/v1/swagger.json
+    status: 200
+    note: NOT a spec — returns the HTML login page (text/html) from a catch-all route; discarded
+  - url: https://www.goodenergy.co.uk/wp-json/
+    status: 200
+    note: >-
+      WordPress core REST API is enabled on the marketing site (18 namespaces, 413 routes, including
+      wp/v2 and a plugin namespace "fibre"). This is incidental CMS plumbing, not an energy API and
+      not a Good Energy product, so it is deliberately NOT listed in apis.yml.
+  - url: https://www.goodenergy.co.uk/blog/
+    status: 200
+  - url: https://www.goodenergy.co.uk/feed/
+    status: 200
+  - url: https://www.goodenergy.co.uk/investors/
+    status: 200
+  - url: https://www.goodenergy.co.uk/help/
+    status: 200
+  subdomainsResolved:
+  - account.goodenergy.co.uk (Azure Front Door ge-cdn-fde-prd01) — HTTP 200
+  - login.goodenergy.co.uk (Azure Front Door ge-cdn-fde-prd01) — HTTP 200
+  - api.goodenergy.co.uk — answers, all probed paths 404/403
+  subdomainsNXDOMAIN:
+  - developer
+  - developers
+  - docs
+  - data
+  - my
+  - portal
+  - selfserve
+  - secure
+  - smart
+  - apis
+  - dev
+  - partner
+  - data-api
+  - graph
+  - auth
+  - id
+  githubOrganization:
+    found: false
+    note: >-
+      github.com/goodenergy is an unrelated Sydney, Australia account (blog goodenergy.com.au, last
+      pushed 2016) and github.com/good-energy is an unrelated German account
+      (info@klimaschutzplus.org, 0 public repos). Neither belongs to Good Energy Group PLC, so no
+      GitHubOrganization property is recorded.
+
+artifactsHarvested:
+- path: authentication/good-energy-openid-configuration.json
+  sourceURL: https://login.goodenergy.co.uk/.well-known/openid-configuration
+  httpStatus: 200
+  contentType: application/json; charset=UTF-8
+  fetched: '2026-07-27'
+  parsed: true
+  type: OpenID Connect Discovery 1.0 document
+- path: authentication/good-energy-openid-jwks.json
+  sourceURL: https://login.goodenergy.co.uk/.well-known/openid-configuration/jwks
+  httpStatus: 200
+  contentType: application/json; charset=UTF-8
+  fetched: '2026-07-27'
+  parsed: true
+  type: JSON Web Key Set (RFC 7517)
+
+openapi:
+  harvested: false
+  count: 0
+  note: >-
+    No OpenAPI, Swagger, AsyncAPI, GraphQL SDL or Postman collection is published or retrievable.
+    The openapi/ directory is deliberately absent because nothing real was found — nothing was
+    generated, inferred, or invented.
+
+findings:
+  summary: |
+    Good Energy is a clean control case for the central question of the energy sector: a mandate is
+    not an implementation, and an implemented mandate is not necessarily an API.
+
+    Britain regulated the pipes, not the data right. Good Energy carries a real, live, verifiable
+    smart-metering infrastructure obligation — it is a BSC and REC party, it operates DCC-adopted
+    SMETS2 meters, and it has been active enough inside that machinery to raise Elexon BSC
+    modification P459 and to take a derogation request to an Ofgem regulatory sandbox. Every bit of
+    that is verified against regulator and code-body records rather than company marketing. And none
+    of it surfaces as a single callable endpoint.
+
+    On the consumer side the honest answer is that no mandate applies at all. There is no UK
+    Consumer Data Right for energy, no Green Button, no accreditation regime, and therefore no
+    designation to be "not live" against. Good Energy is not non-compliant; there is simply nothing
+    to comply with, and it has built nothing voluntarily.
+
+    On the market-data side Good Energy publishes nothing open. It is a supplier, not a network or
+    system operator, so Britain's genuinely open energy data (NESO Carbon Intensity, Elexon BMRS,
+    DNO portals) sits with other parties. Closed on consumer data, closed on market data — the split
+    that usually produces the interesting finding collapses here into uniform closure.
+
+    The comparison that matters is Octopus Energy: identical regulator, identical codes, identical
+    smart-meter obligation, and a real self-serve developer portal with REST and GraphQL Kraken APIs
+    licensed to utilities worldwide. The gap between the two GB suppliers is entirely a product
+    decision. Regulation explains neither of them.
+
+    The one machine-readable contract Good Energy exposes anonymously is the OpenID Connect
+    discovery document of its customer-login identity provider — portal scopes for billing and
+    tariff switching, no dynamic client registration, no way in for a third party. That artifact is
+    captured verbatim, and it is the whole of the company's public API surface.
+  apisListed: 1
+  apiSurfaceIsDeveloperFacing: false
+  status: built-stub

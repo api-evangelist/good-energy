@@ -1,0 +1,93 @@
+aid: good-energy
+url: https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/apis.yml
+name: Good Energy
+kind: company
+description: >-
+  Good Energy is a British renewable energy supplier and green-technology installer founded in 1999
+  and headquartered in Chippenham, Wiltshire, acquired outright by Abu Dhabi based Esyasoft Investment
+  Holding in March 2025 for GBP 99.4 million. It sits on the retail edge of the GB electricity value
+  chain: a licensed supplier buying 100% renewable power directly from more than 2,000 British
+  generators, the largest voluntary administrator of the Feed-in Tariff, an export/Smart Export
+  Guarantee counterparty, and an installer of solar, batteries, heat pumps and EV chargers. Its API
+  posture is honest and thin. The United Kingdom mandated smart-metering INFRASTRUCTURE, not a
+  consumer data right: Good Energy is a Balancing and Settlement Code and Retail Energy Code party
+  operating DCC-adopted SMETS2 smart meters — verified through an Ofgem regulatory-sandbox decision
+  naming Good Energy Ltd and through Elexon BSC modification P459, which Good Energy itself raised to
+  allow different supplier agents on import and export MSIDs where DCC-adopted smart meters are
+  installed. That obligation produces no public API whatsoever. There is no UK equivalent of the
+  Australian Consumer Data Right binding Good Energy, no Green Button, and no accredited-recipient
+  scheme. No developer portal exists (developer., developers., docs. and data. subdomains do not
+  resolve; /developers, /api and /docs return 404). Both sides are closed: consumer usage and billing
+  data are reachable only by the account holder through the login-gated customer hub, and no open
+  grid or market data is published — GB open energy data comes from NESO, Elexon and the DNOs, not
+  from the supplier. The single machine-readable API artifact Good Energy exposes anonymously is the
+  OpenID Connect discovery document of its customer-login identity provider.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+tags:
+- Energy
+- United Kingdom
+- Utilities
+- Electricity
+- Gas
+- Renewables
+- Smart Metering
+- Solar
+- EV Charging
+- Energy Retail
+created: '2026-07-27'
+modified: '2026-07-27'
+specificationVersion: '0.19'
+apis:
+- aid: good-energy:good-energy-customer-identity-openid-connect
+  name: Good Energy Customer Identity (OpenID Connect)
+  description: >-
+    The OpenID Connect / OAuth 2.0 identity provider behind Good Energy's customer hub at
+    account.goodenergy.co.uk. It is NOT a developer-facing API and Good Energy publishes no
+    documentation for it — it is listed here only because its discovery metadata is served
+    anonymously and machine-readably at https://login.goodenergy.co.uk/.well-known/openid-configuration
+    (HTTP 200, application/json, fetched 2026-07-27), making it the only harvestable API contract the
+    company exposes. The document advertises a Duende IdentityServer style surface with
+    authorization, token, userinfo, introspection, revocation, device-authorization, CIBA and PAR
+    endpoints, PKCE (S256), DPoP signing algorithms, and the scopes openid, profile, email,
+    offline_access, customer_portal and customer_portal_tariff_switch. There is no
+    registration_endpoint, so no third party can obtain a client; access is customer-account-required.
+  humanURL: https://account.goodenergy.co.uk/
+  baseURL: https://login.goodenergy.co.uk
+  tags:
+  - Energy
+  - United Kingdom
+  - Identity
+  - OpenID Connect
+  - OAuth
+  - Customer Portal
+  properties:
+  - type: OpenIDConnectDiscovery
+    url: authentication/good-energy-openid-configuration.json
+  - type: JWKS
+    url: authentication/good-energy-openid-jwks.json
+  - type: Authentication
+    url: https://login.goodenergy.co.uk/.well-known/openid-configuration
+  - type: SignIn
+    url: https://account.goodenergy.co.uk/
+common:
+- type: Website
+  url: https://www.goodenergy.co.uk/
+- type: Blog
+  url: https://www.goodenergy.co.uk/blog/
+- type: BlogRSS
+  url: https://www.goodenergy.co.uk/feed/
+- type: LinkedIn
+  url: https://uk.linkedin.com/company/goodenergyuk
+- type: SignIn
+  url: https://account.goodenergy.co.uk/
+- type: SecurityTxt
+  url: https://www.goodenergy.co.uk/.well-known/security.txt
+- type: Partners
+  url: https://www.goodenergy.co.uk/partners/
+- type: InvestorRelations
+  url: https://www.goodenergy.co.uk/investors/
+- type: Support
+  url: https://www.goodenergy.co.uk/help/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
