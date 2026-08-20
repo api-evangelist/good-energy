@@ -58,6 +58,13 @@ apis:
   - United Kingdom
   - Identity
   - OpenID Connect
+  - Authentication
+  - Customer Portal
+  tags_raw:
+  - Energy
+  - United Kingdom
+  - Identity
+  - OpenID Connect
   - OAuth
   - Customer Portal
   properties:
