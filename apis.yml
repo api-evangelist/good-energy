@@ -22,6 +22,17 @@ description: >-
   grid or market data is published — GB open energy data comes from NESO, Elexon and the DNOs, not
   from the supplier. The single machine-readable API artifact Good Energy exposes anonymously is the
   OpenID Connect discovery document of its customer-login identity provider.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.goodenergy.co.uk/wp-content/uploads/2021/11/cropped-good-energy-favicon-192x192.png
 tags:
 - Energy
