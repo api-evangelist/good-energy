@@ -1,5 +1,8 @@
 aid: good-energy
 url: https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
+x-api-posture-note: "That obligation produces no public API whatsoever."
 name: Good Energy
 kind: company
 description: >-
