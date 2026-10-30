@@ -1,4 +1,4 @@
-# Good Energy (good-energy)
+# Good Energy
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,66 +64,98 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Good Energy is a British renewable energy supplier and green-technology installer founded in 1999 and headquartered in Chippenham, Wiltshire, acquired outright by Abu Dhabi based Esyasoft Investment Holding in March 2025 for GBP 99.4 million. It sits on the retail edge of the GB electricity value chain: a licensed supplier buying 100% renewable power directly from more than 2,000 British generators, the largest voluntary administrator of the Feed-in Tariff, an export/Smart Export Guarantee counterparty, and an installer of solar, batteries, heat pumps and EV chargers. Its API posture is honest and thin. The United Kingdom mandated smart-metering INFRASTRUCTURE, not a consumer data right: Good Energy is a Balancing and Settlement Code and Retail Energy Code party operating DCC-adopted SMETS2 smart meters — verified through an Ofgem regulatory-sandbox decision naming Good Energy Ltd and through Elexon BSC modification P459, which Good Energy itself raised to allow different supplier agents on import and export MSIDs where DCC-adopted smart meters are installed. That obligation produces no public API whatsoever. There is no UK equivalent of the Australian Consumer Data Right binding Good Energy, no Green Button, and no accredited-recipient scheme. No developer portal exists. Both sides are closed: consumer usage and billing data are reachable only by the account holder through the login-gated customer hub, and no open grid or market data is published — GB open energy data comes from NESO, Elexon and the DNOs, not from the supplier.
+Good Energy is a British renewable energy supplier and green-technology installer founded in 1999 and headquartered in Chippenham, Wiltshire, acquired outright by Abu Dhabi based Esyasoft Investment Holding in March 2025 for GBP 99.4 million. It sits on the retail edge of the GB electricity value chain: a licensed supplier buying 100% renewable power directly from more than 2,000 British generators, the largest voluntary administrator of the Feed-in Tariff, an export/Smart Export Guarantee counterparty, and an installer of solar, batteries, heat pumps and EV chargers. Its API posture is honest and thin. The United Kingdom mandated smart-metering INFRASTRUCTURE, not a consumer data right: Good Energy is a Balancing and Settlement Code and Retail Energy Code party operating DCC-adopted SMETS2 smart meters — verified through an Ofgem regulatory-sandbox decision naming Good Energy Ltd and through Elexon BSC modification P459, which Good Energy itself raised to allow different supplier agents on import and export MSIDs where DCC-adopted smart meters are installed. That obligation produces no public API whatsoever. There is no UK equivalent of the Australian Consumer Data Right binding Good Energy, no Green Button, and no accredited-recipient scheme. No developer portal exists (developer., developers., docs. and data. subdomains do not resolve; /developers, /api and /docs return 404). Both sides are closed: consumer usage and billing data are reachable only by the account holder through the login-gated customer hub, and no open grid or market data is published — GB open energy data comes from NESO, Elexon and the DNOs, not from the supplier. The single machine-readable API artifact Good Energy exposes anonymously is the OpenID Connect discovery document of its customer-login identity provider.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/good-energy/refs/heads/main/apis.yml)
+**Areas:** Energy · United Kingdom · Utilities · Electricity · Gas · Renewables · Smart Metering · Solar · EV Charging · Energy Retail
 
-## Tags
+## Good Energy on APIs.io
 
-- Energy
-- United Kingdom
-- Utilities
-- Electricity
-- Gas
-- Renewables
-- Smart Metering
-- Solar
-- EV Charging
-- Energy Retail
+Everything profiled for Good Energy is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/good-energy/](https://apis.io/providers/good-energy/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (1)
 
-- **Created:** 2026-07-27
-- **Modified:** 2026-07-27
+- [Good Energy Customer Identity (OpenID Connect)](https://apis.io/apis/good-energy/good-energy-customer-identity-openid-connect/) — The OpenID Connect / OAuth 2.0 identity provider behind Good Energy's customer hub at account.goodenergy.co.uk. It is NOT a developer-facing API and Good…
 
-## APIs
+### Published properties
 
-### Good Energy Customer Identity (OpenID Connect)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The OpenID Connect / OAuth 2.0 identity provider behind Good Energy's customer hub at account.goodenergy.co.uk. It is NOT a developer-facing API and Good Energy publishes no documentation for it — it is listed here only because its discovery metadata is served anonymously and machine-readably, making it the only harvestable API contract the company exposes. The document advertises a Duende IdentityServer style surface with authorization, token, userinfo, introspection, revocation, device-authorization, CIBA and PAR endpoints, PKCE (S256), DPoP signing algorithms, and the scopes `openid`, `profile`, `email`, `offline_access`, `customer_portal` and `customer_portal_tariff_switch`. There is no `registration_endpoint`, so no third party can obtain a client; access is customer-account-required.
+#### Security (3)
 
-- **Human URL:** [https://account.goodenergy.co.uk/](https://account.goodenergy.co.uk/)
-- **Base URL:** `https://login.goodenergy.co.uk`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Good Energy Authentication](https://apis.io/security/good-energy/good-energy-authentication/)
+- [Good Energy Domain Security](https://apis.io/security/good-energy/good-energy-domain-security/)
+- [Good Energy Vulnerability Disclosure](https://apis.io/security/good-energy/good-energy-vulnerability-disclosure/)
 
-- Energy
-- United Kingdom
-- Identity
-- OpenID Connect
-- OAuth
-- Customer Portal
+#### OAuth scopes (1)
 
-#### Properties
+The permissions the API asks for.
 
-- [OpenID Connect Discovery](authentication/good-energy-openid-configuration.json) — [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)
-- [JWKS](authentication/good-energy-openid-jwks.json) — [JSON Web Key Set (RFC 7517)](https://www.rfc-editor.org/rfc/rfc7517)
-- [Authentication](https://login.goodenergy.co.uk/.well-known/openid-configuration)
-- [Sign In](https://account.goodenergy.co.uk/)
+- [Good Energy Scopes](https://apis.io/scopes/good-energy/good-energy-scopes/)
 
-## Common Properties
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.goodenergy.co.uk/)
-- [Blog](https://www.goodenergy.co.uk/blog/)
-- [Blog RSS](https://www.goodenergy.co.uk/feed/)
-- [LinkedIn](https://uk.linkedin.com/company/goodenergyuk)
-- [Sign In](https://account.goodenergy.co.uk/)
-- [Security.txt](https://www.goodenergy.co.uk/.well-known/security.txt)
-- [Partners](https://www.goodenergy.co.uk/partners/)
-- [Investor Relations](https://www.goodenergy.co.uk/investors/)
+- [Pricing](https://www.goodenergy.co.uk/good-energy-tariffs/)
+- [Sign up](https://www.goodenergy.co.uk/join/)
 - [Support](https://www.goodenergy.co.uk/help/)
+- [Blog](https://www.goodenergy.co.uk/blog/)
+- [Security](https://www.goodenergy.co.uk/.well-known/security.txt)
+- [Terms of service](https://www.goodenergy.co.uk/terms-conditions/)
+- [Privacy policy](https://www.goodenergy.co.uk/privacy-policy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.9** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 44.7 |
+
+**Agent readiness 2.5** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 39.3** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/good-energy/](https://apis.io/providers/good-energy/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Good Energy: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/good-energy/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
